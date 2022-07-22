@@ -1,12 +1,14 @@
 from abc import ABC
 from interfaces import IActor
-# import traceback; name: str = traceback.extract_stack()[-2][2]
+
 
 class Ability(ABC):
     """Abilities enable tasks/actions to perform specific requirements."""
-    
-    def __init__(self) -> None:
-        self.name = type(self).__name__
+
+    @classmethod
+    def name(cls) -> str:
+        """Get the name of the (sub)class, primarily for the ability mapping."""
+        return cls.__name__
 
     @staticmethod
     def As(actor: IActor) -> "Ability":

@@ -28,9 +28,9 @@ class Actor(IActor):
         """Get an attribute from the actors attribute collection.
 
         :param key: the key for the attribute
-        :returns: the value for the requested attribute
+        :returns: the value for the requested attribute if the key exists, otherwise None
         """
-        return self.attributes[key]
+        return self.attributes.get(key)
 
     @staticmethod
     def named(name: str) -> "Actor":
@@ -49,12 +49,12 @@ class Actor(IActor):
         return self
 
     def can(self, *abilities: Ability) -> "Actor":
-        """Assign one or more abilities to the actor. e.g. Browsing, SFT-Client, HTTP-Client, ...
+        """Assign one or more abilities to the actor
         
         :param abilites: the abilities the actor will be able to use.
         """
         for ability in abilities:
-            self.ability_map[type(ability)] = ability
+            self.ability_map[ability.name()] = ability
         return self
 
     def attempts_to(self, *activities: Action | Task) -> Any:
@@ -65,10 +65,10 @@ class Actor(IActor):
 
     def with_ability_to(self, ability: Ability) -> Ability:
         """Verify if the actor has the given ability."""
-        if ability not in self.ability_map:
-            raise RuntimeError("Error: This Actor does not have this ability: " + str(ability))
+        if ability.name() not in self.ability_map:
+            raise RuntimeError("Error: This Actor does not have this ability: " + ability.name())
         else:
-            return self.ability_map[ability]
+            return self.ability_map[ability.name()]
 
     def asks(self, question: Question) -> Any:
         """Ask a question.

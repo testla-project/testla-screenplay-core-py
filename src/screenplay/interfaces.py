@@ -1,4 +1,4 @@
-# no interfaces in Python!
+# no interfaces in Python! -> no need for IAbility, IAction, IQuestion, ITask?
 
 from abc import ABC, abstractmethod
 from typing import Any
