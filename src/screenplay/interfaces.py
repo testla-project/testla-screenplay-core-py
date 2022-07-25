@@ -1,7 +1,6 @@
 # no interfaces in Python! -> no need for IAbility, IAction, IQuestion, ITask?
 
 from abc import ABC, abstractmethod
-from typing import Any
 
 
 class IActor(ABC):
@@ -10,17 +9,17 @@ class IActor(ABC):
 
     # set attribute
     @abstractmethod
-    def With(self, key: str, value: Any) -> "IActor":
+    def With(self, key: str, value: object) -> "IActor":
         pass
 
     # get attribute
     @abstractmethod
-    def states(self, key: str) -> Any:
+    def states(self, key: str) -> object:
         pass
 
     # connection to questions
     @abstractmethod
-    def asks(self, question, activityResult: Any) -> Any:
+    def asks(self, question, activityResult: object) -> object:
         pass
 
     # connection to abilities
@@ -34,7 +33,7 @@ class IActor(ABC):
 
     # connection to tasks/actions
     @abstractmethod
-    def attempts_to(self, *activities) -> Any:
+    def attempts_to(self, *activities) -> object:
         pass
 
 
@@ -49,7 +48,7 @@ class IActor(ABC):
 #     """An object representing an action that an IActor can perform."""
 
 #     @abstractmethod
-#     def perform_as(self, actor: IActor) -> Any:
+#     def perform_as(self, actor: IActor) -> object:
 #         """Makes the provided IActor perform this Action."""
 #         pass
 
@@ -58,7 +57,7 @@ class IActor(ABC):
 #     """An object representing a task that an IActor can perform."""
 
 #     @abstractmethod
-#     def perform_as(self, actor: IActor) -> Any:
+#     def perform_as(self, actor: IActor) -> object:
 #         """Makes the provided IActor perform this Action."""
 #         pass
 
@@ -66,6 +65,6 @@ class IActor(ABC):
 # class IQuestion(ABC):
 
 #     @abstractmethod
-#     def answered_by(self, actor: IActor) -> Any:
+#     def answered_by(self, actor: IActor) -> object:
 #         """Implementation of the query answer."""
 #         pass

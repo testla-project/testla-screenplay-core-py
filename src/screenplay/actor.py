@@ -1,4 +1,3 @@
-from typing import Any
 from interfaces import IActor
 from ability import Ability
 from action import Action
@@ -14,7 +13,7 @@ class Actor(IActor):
         self.ability_map = {} # map of abilities of this Actor; maps types 
         self.name = name # name of this actor
 
-    def With(self, key: str, value: Any) -> IActor:
+    def With(self, key: str, value: object) -> IActor:
         """Store an attribute in the actors attribute collection.
 
         :param key: attribute name
@@ -24,7 +23,7 @@ class Actor(IActor):
         self.attributes[key] = value
         return self
 
-    def states(self, key: str) -> Any:
+    def states(self, key: str) -> object:
         """Get an attribute from the actors attribute collection.
 
         :param key: the key for the attribute
@@ -57,7 +56,7 @@ class Actor(IActor):
             self.ability_map[ability.name()] = ability
         return self
 
-    def attempts_to(self, *activities: Action | Task) -> Any:
+    def attempts_to(self, *activities: Action | Task) -> object:
         """Executes the given Tasks/Actions."""
         for activity in activities:
             result = activity.perform_as(self)
@@ -70,7 +69,7 @@ class Actor(IActor):
         else:
             return self.ability_map[ability.name()]
 
-    def asks(self, question: Question) -> Any:
+    def asks(self, question: Question) -> object:
         """Ask a question.
         
         :param question: the question to ask."""
