@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from interfaces import IActor
+from testla_screenplay.interfaces import IActor
 
 
 class Task(ABC):
