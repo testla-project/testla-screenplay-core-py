@@ -8,3 +8,4 @@ LICENSE
 pyproject.toml
 build/
 .env
+testla_screenplay.egg-info/

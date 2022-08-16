@@ -1,8 +1,9 @@
-from interfaces import IActor
-from ability import Ability
-from action import Action
-from task import Task
+from testla_screenplay.interfaces import IActor
+from testla_screenplay.ability import Ability
+from testla_screenplay.action import Action
+from testla_screenplay.task import Task
 from question import Question
+
 
 class Actor(IActor):
     """Actors use abilities in order to execute tasks/actions and answer questions."""
@@ -10,7 +11,7 @@ class Actor(IActor):
     def __init__(self, name: str) -> None:
         super().__init__()
         self.attributes = {} # collection of attributes assigned to the actor
-        self.ability_map = {} # map of abilities of this Actor; maps types 
+        self.__ability_map = {} # map of abilities of this Actor; maps types 
         self.name = name # name of this actor
 
     def With(self, key: str, value: object) -> IActor:
@@ -53,7 +54,7 @@ class Actor(IActor):
         :param abilites: the abilities the actor will be able to use.
         """
         for ability in abilities:
-            self.ability_map[ability.name()] = ability
+            self.__ability_map[ability.name()] = ability
         return self
 
     def attempts_to(self, *activities: Action | Task) -> object:
@@ -64,13 +65,14 @@ class Actor(IActor):
 
     def with_ability_to(self, ability: Ability) -> Ability:
         """Verify if the actor has the given ability."""
-        if ability.name() not in self.ability_map:
+        if ability.name() not in self.__ability_map:
             raise RuntimeError("Error: This Actor does not have this ability: " + ability.name())
         else:
-            return self.ability_map[ability.name()]
+            return self.__ability_map[ability.name()]
 
     def asks(self, question: Question) -> object:
         """Ask a question.
         
         :param question: the question to ask."""
         return question.answered_by(self)
+

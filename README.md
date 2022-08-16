@@ -47,11 +47,11 @@ class MyBrowseAbility(Ability):
         return self.page.goto(url)
 
     # fill functionality by using playwright spicific code for our example
-    def fill(self, locator: str, value: str) -> None: 
+    def fill(self, locator: str, value: str) -> None:
         return self.page.fill(locator, value)
 
     # click functionality by using playwright spicific code for our example
-    def click(self, locator: str) -> None: 
+    def click(self, locator: str) -> None:
         return self.page.click(locator)
 
     # find functionality by using playwright spicific code for our example
