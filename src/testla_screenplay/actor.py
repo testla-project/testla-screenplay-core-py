@@ -1,3 +1,4 @@
+from typing import Type
 from testla_screenplay.interfaces import IActor
 from testla_screenplay.ability import Ability
 from testla_screenplay.action import Action
@@ -63,7 +64,7 @@ class Actor(IActor):
             result = activity.perform_as(self)
         return result
 
-    def with_ability_to(self, ability: Ability) -> Ability:
+    def with_ability_to(self, ability: Type[Ability]) -> Type[Ability]:
         """Verify if the actor has the given ability."""
         if ability.name() not in self.__ability_map:
             raise RuntimeError("Error: This Actor does not have this ability: " + ability.name())
