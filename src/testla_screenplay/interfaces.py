@@ -35,36 +35,3 @@ class IActor(ABC):
     @abstractmethod
     def attempts_to(self, *activities) -> object:
         pass
-
-
-# class IAbility(ABC):
-#     """This is an empty interface, since every ability has its own call patterns and therefore there is no common ground.
-#     Only the name attribute needs to be set for internal reference.
-#     """
-#     name: str
-
-
-# class IAction(ABC):
-#     """An object representing an action that an IActor can perform."""
-
-#     @abstractmethod
-#     def perform_as(self, actor: IActor) -> object:
-#         """Makes the provided IActor perform this Action."""
-#         pass
-
-
-# class ITask(ABC):
-#     """An object representing a task that an IActor can perform."""
-
-#     @abstractmethod
-#     def perform_as(self, actor: IActor) -> object:
-#         """Makes the provided IActor perform this Action."""
-#         pass
-
-
-# class IQuestion(ABC):
-
-#     @abstractmethod
-#     def answered_by(self, actor: IActor) -> object:
-#         """Implementation of the query answer."""
-#         pass
