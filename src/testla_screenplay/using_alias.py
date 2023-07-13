@@ -1,5 +1,3 @@
-from testla_screenplay.interfaces import IActor
-
 class UsingAlias():
     """An object representing a task that an IActor can perform."""
     ability_alias: str | None = None

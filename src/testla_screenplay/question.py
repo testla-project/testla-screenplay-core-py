@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
-from testla_screenplay.interfaces import IActor
-
-from src.testla_screenplay.using_alias import UsingAlias
+from .interfaces import IActor
+from .using_alias import UsingAlias
 
 
 class Question(ABC, UsingAlias):

@@ -1,9 +1,9 @@
 from typing import Type
-from testla_screenplay.interfaces import IActor
-from testla_screenplay.ability import Ability
-from testla_screenplay.action import Action
-from testla_screenplay.task import Task
-from testla_screenplay.question import Question
+from .interfaces import IActor
+from .ability import Ability
+from .action import Action
+from .task import Task
+from .question import Question
 
 
 class Actor(IActor):
@@ -11,7 +11,7 @@ class Actor(IActor):
 
     def __init__(self, name: str) -> None:
         super().__init__()
-        self.attributes = {} # collection of attributes assigned to the actor
+        self.attributes = {"name": name} # collection of attributes assigned to the actor
         self.__ability_map = {} # map of abilities of this Actor; maps types 
         self.name = name # name of this actor
 
@@ -60,7 +60,7 @@ class Actor(IActor):
                 ability_identifier = ability_identifier + ability.alias
             
             if (self.__ability_map.get(ability_identifier) is not None):
-                raise RuntimeError("Error: Ability with this identifier already defined")
+                raise RuntimeError("Error: Ability with this identifier already defined: "  + ability_identifier)
 #            self.__ability_map[ability.name()] = ability
             self.__ability_map[ability_identifier] = ability
         return self
@@ -78,7 +78,7 @@ class Actor(IActor):
             ability_identifier = ability_identifier + alias    
         
         if ability_identifier not in self.__ability_map:
-            raise RuntimeError("Error: This Actor does not have this ability: " + ability.name())
+            raise RuntimeError("Error: This Actor does not have this ability: " + ability_identifier)
         else:
             return self.__ability_map[ability_identifier]
 

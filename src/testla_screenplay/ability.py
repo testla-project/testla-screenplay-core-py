@@ -1,5 +1,5 @@
 from abc import ABC
-from testla_screenplay.interfaces import IActor
+from .interfaces import IActor
 
 
 class Ability(ABC):
