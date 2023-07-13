@@ -19,12 +19,12 @@ class IActor(ABC):
 
     # connection to questions
     @abstractmethod
-    def asks(self, question, activityResult: object) -> object:
+    def asks(self, *questions) -> object:
         pass
 
     # connection to abilities
     @abstractmethod
-    def with_ability_to(self, ability):
+    def with_ability_to(self, ability, alias: str | None = None):
         pass
 
     @abstractmethod

@@ -10,6 +10,12 @@ class Ability(ABC):
         """Get the name of the (sub)class, primarily for the ability mapping."""
         return cls.__name__
 
+    alias: str | None = None
+    
     @staticmethod
-    def As(actor: IActor) -> "Ability":
-        return actor.with_ability_to(Ability)
+    def As(actor: IActor, alias: str | None = None) -> "Ability":
+        return actor.with_ability_to(Ability, alias)
+    
+    def with_alias(self, name: str) -> "Ability":
+        self.alias = name
+        return self

@@ -1,8 +1,10 @@
 from abc import ABC, abstractmethod
 from testla_screenplay.interfaces import IActor
 
+from src.testla_screenplay.using_alias import UsingAlias
 
-class Action(ABC):
+
+class Action(ABC, UsingAlias):
     """An object representing an action that an IActor can perform."""
 
     @abstractmethod

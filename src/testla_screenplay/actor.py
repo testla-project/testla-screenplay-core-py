@@ -55,7 +55,14 @@ class Actor(IActor):
         :param abilites: the abilities the actor will be able to use.
         """
         for ability in abilities:
-            self.__ability_map[ability.name()] = ability
+            ability_identifier = ability.name()
+            if ability.alias is not None: 
+                ability_identifier = ability_identifier + ability.alias
+            
+            if (self.__ability_map.get(ability_identifier) is not None):
+                raise RuntimeError("Error: Ability with this identifier already defined")
+#            self.__ability_map[ability.name()] = ability
+            self.__ability_map[ability_identifier] = ability
         return self
 
     def attempts_to(self, *activities: Action | Task) -> object:
@@ -64,16 +71,22 @@ class Actor(IActor):
             result = activity.perform_as(self)
         return result
 
-    def with_ability_to(self, ability: Type[Ability]) -> Type[Ability]:
+    def with_ability_to(self, ability: Type[Ability], alias: str | None = None) -> Type[Ability]:
         """Verify if the actor has the given ability."""
-        if ability.name() not in self.__ability_map:
+        ability_identifier = ability.name()
+        if alias is not None: 
+            ability_identifier = ability_identifier + alias    
+        
+        if ability_identifier not in self.__ability_map:
             raise RuntimeError("Error: This Actor does not have this ability: " + ability.name())
         else:
-            return self.__ability_map[ability.name()]
+            return self.__ability_map[ability_identifier]
 
-    def asks(self, question: Question) -> object:
+    def asks(self, *questions: Question) -> object:
         """Ask a question.
         
         :param question: the question to ask."""
-        return question.answered_by(self)
+        for question in questions:
+            result = question.answered_by(self)
+        return result
 
