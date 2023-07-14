@@ -59,7 +59,7 @@ class Actor(IActor):
             if ability.alias is not None: 
                 ability_identifier = ability_identifier + ability.alias
             
-            if (self.__ability_map.get(ability_identifier) is not None):
+            if self.__ability_map.get(ability_identifier) is not None:
                 raise RuntimeError("Error: Ability with this identifier already defined: "  + ability_identifier)
 #            self.__ability_map[ability.name()] = ability
             self.__ability_map[ability_identifier] = ability
